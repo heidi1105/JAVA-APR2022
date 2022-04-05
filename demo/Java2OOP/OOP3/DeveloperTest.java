@@ -1,9 +1,15 @@
 import java.util.ArrayList;
 public class DeveloperTest{
     public static void main(String[] args){
+        System.out.println("Total Developers: "+Developer.getDevCount());
+        System.out.println("Total hours of sleep: "+Developer.getTotalHoursOfSleep());
+
         Developer random1 = new Developer();
         Developer heidi = new Developer("Heidi");
+        System.out.println("Total Developers: "+heidi.getDevCount());
 
+        System.out.println("Total Developers: "+Developer.getDevCount());
+        System.out.println("Total hours of sleep: "+Developer.getTotalHoursOfSleep());
 
         
         // create a few projects

@@ -5,6 +5,9 @@ public class Developer{
     private int hunger;
     private ArrayList<Project> projects;
     private double hoursOfSleep;
+    // static variables (variables without instantiating any class)
+    private static int devCount = 0;
+    private static double totalHoursOfSleep = 0;
 
     // CONSTRUCTOR
     public Developer(){
@@ -12,6 +15,8 @@ public class Developer{
         this.hunger = 100;
         this.hoursOfSleep = 6.5;
         this.projects = new ArrayList<Project>();
+        devCount++;
+        totalHoursOfSleep += this.hoursOfSleep;
     }
 
     public Developer(String name){
@@ -19,7 +24,8 @@ public class Developer{
         this.hunger = 30;
         this.hoursOfSleep = 7;
         this.projects = new ArrayList<Project>();
-
+        devCount++;
+        totalHoursOfSleep += this.hoursOfSleep;
     }
 
     // methods -- what it does
@@ -69,6 +75,23 @@ public class Developer{
     public void addToProjects(Project project){
         this.projects.add(project);
     }
-    
+     
+    public static int getDevCount(){
+        return devCount;
+    }
+
+    public static double getTotalHoursOfSleep(){
+        return totalHoursOfSleep;
+    }
+
+    public static void setDevCount(int newDevCount){
+        devCount = newDevCount;
+    }
+
+    public static void setTotalHoursOfSleep(double newTotal){
+        totalHoursOfSleep= newTotal;
+    }
+
+
 
 }

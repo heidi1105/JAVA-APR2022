@@ -7,13 +7,6 @@ public class Developer{
     public double hoursOfSleep;
     public boolean educated;
 
-    // CONSTRUCTOR
-    public Developer(){
-        // this.name = "A Random developer";
-        // this.hunger = 100;
-        // this.hoursOfSleep = 6.5;
-        // this.educated = false;
-    }
 
     // methods -- what it does
     public void displayStatus(){
