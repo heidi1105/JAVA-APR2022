@@ -10,7 +10,7 @@ public class RoutesController {
 	
 	// ---------------QUERY PARAMS--------------
 	
-	@RequestMapping("/search")
+	@RequestMapping("/")
 	public String searchKeyword(@RequestParam("q") String keyword) { // localhost:8080/search?q=whataever
 		String result = "You searched for " + keyword;
 		return result;
@@ -25,12 +25,17 @@ public class RoutesController {
 	public String getOptionalPet(
 			@RequestParam(value="name", required=false) String petName, 
 			@RequestParam(value="age", required=false) Integer age) {
-		return "Your optional pet " +petName + " is " + age + " years old";
+		if(age ==null) {
+			return petName + " has no age";
+		}else {
+			return "Your optional pet " +petName + " is " + age + " years old";		
+		}
 	}
 	
 	// --------------- PATH VARIABLES --------------
 	@RequestMapping("/path/{name}/{color}")
 	public String pathDemo(@PathVariable("name") String petName, @PathVariable("color") String color) {
+		
 		return "PATH: Your pet " +petName + " is " +  color;
 	}
 	
