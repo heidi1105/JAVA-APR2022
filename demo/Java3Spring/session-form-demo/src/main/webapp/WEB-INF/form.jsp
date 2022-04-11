@@ -10,9 +10,7 @@
 <body>
 	<h1>Review page</h1>
 	<form action="/processReview" method="post">
-		<p>
-			<label> Reviewer </label> <input type="text" name="reviewer" />
-		</p>
+		<input type="hidden" name="reviewer" value="Heidi" />
 		<p>
 			<label> Product </label> <input type="text" name="product" />
 		</p>
@@ -24,5 +22,6 @@
 		</p>
 		<button> Submit your review!</button>
 	</form>
+		<p>${errors}</p>
 </body>
 </html>
