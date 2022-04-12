@@ -39,6 +39,8 @@ public class Movie {
     @Min(0)
     private Integer rating;
     
+    
+    
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;

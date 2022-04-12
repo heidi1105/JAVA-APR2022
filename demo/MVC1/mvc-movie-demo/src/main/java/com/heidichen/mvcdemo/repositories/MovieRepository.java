@@ -9,6 +9,7 @@ import com.heidichen.mvcdemo.models.Movie;
 
 @Repository
 public interface MovieRepository extends CrudRepository<Movie, Long> {
+	// find all movies and return a list of movies
 	List<Movie> findAll();
 	
 

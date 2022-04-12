@@ -1,6 +1,7 @@
 package com.heidichen.mvcdemo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -28,17 +29,29 @@ public class MovieService {
 	}
 	
 	// find one movie
-	
+	public Movie findMovie(Long id) {
+		Optional<Movie> optionalMovie =  movieRepo.findById(id);
+		if(optionalMovie.isPresent()) {
+			return optionalMovie.get();
+		}else {
+			return null;
+		}
+	}
 	
 	// create a movie
 	public Movie createMovie(Movie movie) {
 		return movieRepo.save(movie);
 	}
 	
-	
 	// update a movie
+	public Movie updateMovie(Movie movie) {
+		return movieRepo.save(movie);
+	}
 	
 	// delete a movie
+	public void deleteMovie(Long id) {
+		movieRepo.deleteById(id);
+	}
 	
 	
 
