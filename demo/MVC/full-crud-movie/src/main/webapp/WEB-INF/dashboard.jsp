@@ -15,6 +15,7 @@
 				<th>ID</th>
 				<th>Title</th>
 				<th>Rating</th>
+				<th colspan="2"> Actions </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,6 +28,16 @@
 						</a>
 					</td>
 					<td>${movie.rating }</td>
+					<td> <a href="/movies/${movie.id }/edit">
+						Edit</a></td>
+					<td>
+						<form action="/movies/${movie.id }" method="post">
+						    <input type="hidden" name="_method" value="delete">
+						    <button> Delete</button>  
+						</form>
+					
+					</td>
+					
 				</tr>
 			</c:forEach>
 		</tbody>

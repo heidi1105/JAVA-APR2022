@@ -30,7 +30,7 @@ public class MovieService {
 	
 	// find one movie
 	public Movie findMovie(Long id) {
-		Optional<Movie> optionalMovie =  movieRepo.findById(id);
+		Optional<Movie> optionalMovie =  movieRepo.findById(id); // Optional<T> .get() ---> T
 		if(optionalMovie.isPresent()) { //.isPresent() check if the object exists
 			return optionalMovie.get(); //.get() return the movie
 		}else {

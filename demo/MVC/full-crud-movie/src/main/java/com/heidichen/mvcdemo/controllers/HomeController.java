@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -83,14 +84,43 @@ public class HomeController {
 		if(result.hasErrors()) {
 			return "editMovie.jsp";
 		}else {
-			movieService.createMovie(movie);
+			movieService.updateMovie(movie);
 			return "redirect:/movies";
-		}
-		
+		}	
+	}
+	
+	// delete method
+	@DeleteMapping("/movies/{id}")
+	public String deleteMovie(@PathVariable("id")Long id) {
+		movieService.deleteMovie(id);
+		return "redirect:/movies";
 	}
 	
 	
-	// delete method
+	// COMBINE DASHBOARD + CREATE FORM
+	// render dashboard and the form
+	@GetMapping("/")
+	public String combineFormDashboard(Model model) {
+		model.addAttribute("movies", movieService.allMovies());
+		model.addAttribute("movie", new Movie());
+		return "combinedHome.jsp";
+	}
+	
+	// process the form inside combined home
+	@PostMapping("/createProcess")
+	public String processCombine(@Valid @ModelAttribute("movie")Movie movie, 
+			BindingResult result, Model model) {
+		if(result.hasErrors()) { // does not pass validation
+			// add attribute for the list of movies 
+			model.addAttribute("movies", movieService.allMovies());
+			return "combinedHome.jsp";
+		}else {
+			movieService.createMovie(movie);
+			return "redirect:/";
+		}
+	}
+	
+	
 	
 	
 }
