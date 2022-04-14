@@ -14,21 +14,24 @@
 </head>
 <body>
    <div class="container mt-5">
-   <h1> <c:out value="${user.username }"></c:out></h1>
+   <h1> User Dashboard</h1>
 	<table class="table">
 		<thead>
 			<tr>
 				<th> ID </th>
-				<th> Title </th>
-				<th> Rating </th>
+				<th> username </th>
+				<th> Actions </th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="movie" items="${user.viewedMovies }">
+			<c:forEach var="user" items="${users}">
 				<tr>
-					<td> ${ movie.id}</td>
-					<td> ${movie.title }</td>
-					<td> ${movie.rating } </td>
+					<td> ${ user.id}</td>
+					<td> ${user.username }</td>
+					<td> 
+						<a href="/users/${user.id }/new"> Create movie</a>
+					
+					</td>
 				</tr>
 			</c:forEach>
 		

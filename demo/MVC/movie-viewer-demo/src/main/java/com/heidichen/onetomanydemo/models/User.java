@@ -32,10 +32,9 @@ public class User {
     @OneToMany(mappedBy="viewer", fetch = FetchType.LAZY)
     private List<Movie> viewedMovies;
 	
+    
 	public User() {}
     
-    
-	
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;

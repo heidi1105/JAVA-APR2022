@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.heidichen.onetomanydemo.models.Movie;
@@ -17,7 +18,7 @@ import com.heidichen.onetomanydemo.models.User;
 import com.heidichen.onetomanydemo.services.MainService;
 
 @Controller
-public class MovieController {
+public class MainController {
 
 	@Autowired
 	private MainService mainService;
@@ -60,6 +61,45 @@ public class MovieController {
 			return "redirect:/";
 		}
 	}
+	
+	// one User
+	@GetMapping("/users/{id}")
+	public String showOneUser(@PathVariable("id")Long id, Model model) {
+		model.addAttribute("user", mainService.findOneUser(id));
+		return "oneUser.jsp";
+	}
+	
+	// FORM WITH USER
+	@GetMapping("/users/{userId}/new")
+	public String oneUserWithForm(@PathVariable("userId")Long userId, Model model) {
+		model.addAttribute("movie", new Movie());
+		model.addAttribute("user", mainService.findOneUser(userId));
+		return "oneUserWithForm.jsp";
+	}
+	
+	@PostMapping("/users/{userId}/new")
+	public String processUserMovieForm(@Valid @ModelAttribute("movie")Movie movie, BindingResult result, 
+			Model model, @PathVariable("userId")Long userId) {
+		if(result.hasErrors()) {
+			model.addAttribute("user", mainService.findOneUser(userId));
+			return "oneUserWithForm.jsp";
+		}else {
+			mainService.createMovie(movie);
+			return "redirect:/";
+		}
+		
+	}
+	
+	
+	@GetMapping("/")
+	public String index(Model model) {
+		model.addAttribute("users", mainService.allUsers());
+		return "userDashboard.jsp";
+	}
+	
+	
+	
+	
 	
 	
 	
