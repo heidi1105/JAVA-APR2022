@@ -17,6 +17,7 @@
    	<h1> Welcome to the page</h1>
    	<a href="/gifts/new"> Send a new gift</a>
    	   	<a href="/logout"> Logout</a>
+   	   	<h1> All gifts</h1>
 		<table class="table">
 			<thead>
    			<tr>
@@ -36,18 +37,71 @@
    						<td> ${gift.sender.userName } </td>
    						
    						
-   						
-   						<td> <a href="/gifts/${gift.id }/edit" class="btn btn-success">Edit</a> </td>
-   						<td> 
-   							<form action="/gifts/${gift.id }/delete" method="post">
-   							<input type="hidden" name="_method" value="delete" />
-   							<button class="btn btn-danger"> Delete</button>
-   							</form> </td>
+   						<c:choose>
+   							<c:when test="${gift.sender.id.equals(userId) }">
+								<td><a href="/gifts/${gift.id }/edit"
+									class="btn btn-success">Edit</a></td>
+								<td>
+									<form action="/gifts/${gift.id }/delete" method="post">
+										<input type="hidden" name="_method" value="delete" />
+										<button class="btn btn-danger">Delete</button>
+									</form>
+								</td>
+							</c:when>
+   							<c:otherwise>
+   								<td></td>
+   								<td></td>
+   								
+   							</c:otherwise>	
+   						</c:choose>
    					</tr>
    				</c:forEach>
    			</tbody>
-		
 		</table>	
+		
+		<h1> Sent gifts</h1>
+		<table class="table">
+			<thead>
+   			<tr>
+   				<th> ID </th>
+   				<th> Gift </th>
+   				<th> Quantity </th>
+   				<th> Sender </th>
+   				<th colspan="2"> Actions </th>
+   			</tr>
+			</thead>
+   			<tbody>
+   				<c:forEach var="gift" items="${user.sentGifts }">
+   					<tr>
+   						<td> ${gift.id }</td>
+   						<td> <c:out value="${gift.giftName }"/> </td>
+   						<td> ${gift.quantity } </td>
+   						<td> ${gift.sender.userName } </td>
+   						
+   						
+   						<c:choose>
+   							<c:when test="${gift.sender.id.equals(userId) }">
+								<td><a href="/gifts/${gift.id }/edit"
+									class="btn btn-success">Edit</a></td>
+								<td>
+									<form action="/gifts/${gift.id }/delete" method="post">
+										<input type="hidden" name="_method" value="delete" />
+										<button class="btn btn-danger">Delete</button>
+									</form>
+								</td>
+							</c:when>
+   							<c:otherwise>
+   								<td></td>
+   								<td></td>
+   								
+   							</c:otherwise>	
+   						</c:choose>
+   					</tr>
+   				</c:forEach>
+   			</tbody>
+		</table>			
+		
+		
    
    </div>
 </body>

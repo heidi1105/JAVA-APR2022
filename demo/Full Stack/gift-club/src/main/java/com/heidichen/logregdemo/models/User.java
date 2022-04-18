@@ -44,7 +44,6 @@ public class User {
     
     
     
-    
     public List<Gift> getSentGifts() {
 		return sentGifts;
 	}

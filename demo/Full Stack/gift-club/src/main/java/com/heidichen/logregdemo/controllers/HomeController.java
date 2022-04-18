@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import com.heidichen.logregdemo.models.Gift;
+import com.heidichen.logregdemo.models.User;
 import com.heidichen.logregdemo.services.MainService;
+import com.heidichen.logregdemo.services.UserService;
 
 @Controller
 public class HomeController {
@@ -23,13 +25,20 @@ public class HomeController {
 	@Autowired
 	private MainService mainService;
 	
+	@Autowired
+	private UserService userService;	
+	
 	@GetMapping("/home")
 	public String home(Model model, HttpSession session) {
 		if(session.getAttribute("userId")==null) {
 			return "redirect:/";
 		}
-		
-		
+		// get the userId from session
+		Long userId = (Long) session.getAttribute("userId");
+		// use that userId to find the user
+		User user = userService.findOneUser(userId);
+		// add to model
+		model.addAttribute("user", user);
 		model.addAttribute("gifts", mainService.allGifts());
 		return "home.jsp";
 	}
