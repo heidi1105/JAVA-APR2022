@@ -17,7 +17,7 @@
 ## Preparations
 1. Having a boilerplate for everything
 2. Having a log/reg setup before you get started
-3. TIPS: DO NOT PRE-BUILT EVERYTHING BEFORE THE EXAM
+3. TIPS: DO NOT PRE-BUILD EVERYTHING BEFORE THE EXAM
 
 ## During the exam
 1. WIREFRAME ROOM --- after getting the code, you have 30 mins to start
