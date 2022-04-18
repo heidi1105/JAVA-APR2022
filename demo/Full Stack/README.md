@@ -28,7 +28,7 @@
 1. Full CRUD (Create, Read, Update, Delete)
 2. One-to-many relationship
 3. Login & Registration
-4. <a href="https://s3.us-east-1.amazonaws.com/General_V88/boomyeah2015/codingdojo/curriculum/content/chapter/1640116214__Java%20Rubric.pdf"> Rubrics </a>
+4. <a href="https://login.codingdojo.com/m/315/9537/81392"> Rubrics </a>
 
 
 ## Black Belt: (advanced features) 
